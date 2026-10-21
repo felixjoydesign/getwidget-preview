@@ -1,0 +1,288 @@
+/* GetWidget Design System — Colors & Type
+ * Source of truth: get-widget-dashboard/client/src/index.css + tailwind.config.js
+ *
+ * The app runs TWO parallel token systems:
+ *  - shadcn/ui tokens (--background, --foreground, --primary, ...) — used by Radix-based UI
+ *  - "hu-" tokens (--hu-*) — a second humanUI-style layer used by some custom components
+ * Both are kept here for fidelity. Default to shadcn tokens; reach for --hu-* only when
+ * matching an existing component that already uses them.
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@100..900&family=Geist+Mono:wght@400..700&family=Radley:ital@0;1&display=swap');
+
+:root {
+    /* ───────────── shadcn tokens (light) — raw HSL components ───────────── */
+    --background: 0 0% 100%;
+    --foreground: 222.2 84% 4.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 222.2 84% 4.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222.2 84% 4.9%;
+    --primary: 222.2 84% 4.9%;               /* near-black; "primary" here = the button ink */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 210 40% 96.1%;
+    --secondary-foreground: 222.2 47.4% 11.2%;
+    --muted: 210 40% 96.1%;
+    --muted-foreground: 215.4 16.3% 46.9%;
+    --accent: 210 40% 96.1%;
+    --accent-foreground: 222.2 47.4% 11.2%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 214.3 31.8% 91.4%;
+    --input: 214.3 31.8% 91.4%;
+    --ring: 222.2 84% 4.9%;
+    --radius: 0.5rem;
+
+    /* Charts */
+    --chart-1: 12 76% 61%;
+    --chart-2: 173 58% 39%;
+    --chart-3: 197 37% 24%;
+    --chart-4: 43 74% 66%;
+    --chart-5: 27 87% 67%;
+
+    /* Sidebar */
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 240 5.9% 10%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 240 4.8% 95.9%;
+    --sidebar-accent-foreground: 240 5.9% 10%;
+    --sidebar-border: 220 13% 91%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+
+    /* "hu-" layer — brand blue lives here */
+    --hu-background: 0, 0%, 100%;
+    --hu-foreground: 0, 0%, 14%;
+    --hu-card: 0, 0%, 99%;
+    --hu-card-foreground: 0, 0%, 14%;
+    --hu-primary: 235, 100%, 60%;             /* 🔵 GetWidget brand blue (#1922ff-ish) */
+    --hu-primary-foreground: 0, 0%, 98%;
+    --hu-secondary: 0, 0%, 97%;
+    --hu-secondary-foreground: 0, 0%, 20%;
+    --hu-muted: 0, 0%, 97%;
+    --hu-muted-foreground: 0, 0%, 56%;
+    --hu-accent: 0, 0%, 96%;
+    --hu-accent-foreground: 0, 0%, 20%;
+    --hu-destructive: 9, 96%, 47%;
+    --hu-destructive-foreground: 0, 0%, 98%;
+    --hu-border: 0, 0%, 92%;
+    --hu-input: 0, 0%, 100%;
+    --hu-ring: 0, 0%, 71%;
+
+    /* ───────────── Resolved brand palette (hex, for convenience) ───────────── */
+    --gw-brand-blue: #1922ff;                 /* logo mark + hu-primary */
+    --gw-brand-blue-hover: #0d15d9;
+    --gw-brand-blue-soft: #eef0ff;
+
+    --gw-ink: #0a0e1a;                        /* foreground */
+    --gw-ink-2: #1d283a;
+    --gw-muted-fg: #64748b;
+    --gw-muted-fg-2: #8f98a8;
+
+    --gw-bg: #ffffff;
+    --gw-bg-2: #fafafa;                       /* sidebar */
+    --gw-bg-3: #f5f7fa;                       /* muted surface */
+
+    --gw-border: #e6ebf0;                     /* hsl(214 32% 91%) */
+    --gw-border-soft: rgba(230, 235, 240, 0.6);
+
+    /* Status swatches (pulled from WidgetCard badge map) */
+    --gw-status-published: #059669;           /* emerald-600 */
+    --gw-status-published-bg: rgba(16, 185, 129, 0.10);
+    --gw-status-draft: #71717a;               /* zinc-500 */
+    --gw-status-draft-bg: rgba(113, 113, 122, 0.10);
+    --gw-status-unpublished: #d97706;         /* amber-600 */
+    --gw-status-unpublished-bg: rgba(245, 158, 11, 0.10);
+    --gw-destructive: #dc2626;
+
+    /* ───────────── Type ───────────── */
+    --gw-font-sans: "Geist", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    --gw-font-display: "Geist", ui-sans-serif, system-ui, sans-serif;
+    --gw-font-serif: "Radley", "Iowan Old Style", Georgia, serif;       /* editorial accent */
+    --gw-font-mono: "Geist Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    /* Type scale — derived from observed Tailwind usage in the dashboard.
+     * Dashboard is *dense*: body text typically sits at 13–14px, hero headings 20px. */
+    --gw-text-2xs: 10px;     /* uppercase labels, tiny badges */
+    --gw-text-xs: 11px;      /* badges, meta, workspace count */
+    --gw-text-sm: 13px;      /* body small — most buttons, inputs */
+    --gw-text-base: 14px;    /* body */
+    --gw-text-md: 15px;      /* logo wordmark, active nav */
+    --gw-text-lg: 18px;      /* section headings, empty-state H3 */
+    --gw-text-xl: 20px;      /* dashboard greeting, card titles */
+    --gw-text-2xl: 24px;
+    --gw-text-3xl: 30px;
+    --gw-text-4xl: 36px;
+    --gw-text-5xl: 48px;     /* landing hero */
+    --gw-text-6xl: 60px;
+    --gw-text-7xl: 72px;
+
+    --gw-lh-tight: 1.1;
+    --gw-lh-snug: 1.25;
+    --gw-lh-normal: 1.5;
+    --gw-lh-relaxed: 1.625;
+
+    --gw-tracking-tight: -0.02em;   /* display headlines */
+    --gw-tracking-snug: -0.01em;    /* H1/H2 */
+    --gw-tracking-normal: 0;
+    --gw-tracking-wide: 0.05em;
+    --gw-tracking-wider: 0.1em;     /* 10px uppercase section labels */
+
+    /* ───────────── Radius & elevation ───────────── */
+    --gw-radius-sm: 0.375rem;        /* 6px — small controls */
+    --gw-radius-md: 0.5rem;           /* 8px — buttons, inputs, badges(sm) */
+    --gw-radius-lg: 0.75rem;          /* 12px — nav rows, small cards */
+    --gw-radius-xl: 1rem;             /* 16px — cards (--card-radius), usage pill */
+    --gw-radius-2xl: 1.5rem;          /* 24px — large hero cards */
+    --gw-radius-full: 9999px;
+
+    --gw-shadow-xs: 0 1px 2px 0 rgba(10, 14, 26, 0.04);
+    --gw-shadow-sm: 0 1px 2px 0 rgba(10, 14, 26, 0.05), 0 1px 3px 0 rgba(10, 14, 26, 0.06);
+    --gw-shadow-md: 0 4px 12px -2px rgba(10, 14, 26, 0.08), 0 2px 4px -1px rgba(10, 14, 26, 0.04);
+    --gw-shadow-lg: 0 12px 32px -8px rgba(10, 14, 26, 0.12), 0 4px 8px -2px rgba(10, 14, 26, 0.05);
+    --gw-shadow-ring-primary: 0 0 0 3px rgba(25, 34, 255, 0.15);
+
+    /* ───────────── Spacing (Tailwind-ish; decouples from tw in standalone pages) ───────────── */
+    --gw-space-1: 4px;
+    --gw-space-2: 8px;
+    --gw-space-3: 12px;
+    --gw-space-4: 16px;
+    --gw-space-5: 20px;
+    --gw-space-6: 24px;
+    --gw-space-8: 32px;
+    --gw-space-10: 40px;
+    --gw-space-12: 48px;
+    --gw-space-16: 64px;
+    --gw-space-20: 80px;
+    --gw-space-24: 96px;
+
+    /* Animation */
+    --gw-ease-out: cubic-bezier(0.33, 1, 0.68, 1);   /* used in fade-up/scale-in */
+    --gw-ease-in-out: cubic-bezier(0.4, 0, 0.2, 1);
+    --gw-dur-fast: 150ms;
+    --gw-dur: 200ms;
+    --gw-dur-slow: 300ms;
+    --gw-dur-slower: 500ms;
+}
+
+.dark {
+    --background: 222.2 84% 4.9%;
+    --foreground: 210 40% 98%;
+    --card: 222.2 84% 4.9%;
+    --card-foreground: 210 40% 98%;
+    --primary: 217.2 91.2% 59.8%;
+    --primary-foreground: 222.2 47.4% 11.2%;
+    --secondary: 217.2 32.6% 17.5%;
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217.2 32.6% 17.5%;
+    --muted-foreground: 215 20.2% 65.1%;
+    --accent: 217.2 32.6% 17.5%;
+    --accent-foreground: 210 40% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 210 40% 98%;
+    --border: 217.2 32.6% 17.5%;
+    --input: 217.2 32.6% 17.5%;
+    --ring: 224.3 76.3% 48%;
+
+    --hu-background: 0, 0%, 7%;
+    --hu-foreground: 0, 0%, 100%;
+    --hu-primary: 235, 100%, 60%;
+    --hu-card: 0, 0%, 9%;
+    --hu-border: 0, 0%, 100%, 10%;
+
+    --gw-bg: #121212;
+    --gw-bg-2: #191919;
+    --gw-ink: #ffffff;
+    --gw-border: rgba(255, 255, 255, 0.1);
+}
+
+/* ───────────── Semantic type classes ─────────────
+ * Import + apply. Variables above are the source; these are conveniences. */
+
+.gw-display,
+.gw-h1 {
+    font-family: var(--gw-font-display);
+    font-size: var(--gw-text-5xl);
+    font-weight: 700;
+    line-height: var(--gw-lh-tight);
+    letter-spacing: var(--gw-tracking-tight);
+    color: var(--gw-ink);
+}
+
+.gw-h2 {
+    font-family: var(--gw-font-display);
+    font-size: var(--gw-text-3xl);
+    font-weight: 700;
+    line-height: var(--gw-lh-snug);
+    letter-spacing: var(--gw-tracking-snug);
+    color: var(--gw-ink);
+}
+
+.gw-h3 {
+    font-family: var(--gw-font-display);
+    font-size: var(--gw-text-xl);
+    font-weight: 600;
+    line-height: var(--gw-lh-snug);
+    letter-spacing: var(--gw-tracking-snug);
+    color: var(--gw-ink);
+}
+
+.gw-h4 {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-lg);
+    font-weight: 600;
+    letter-spacing: var(--gw-tracking-snug);
+    color: var(--gw-ink);
+}
+
+.gw-h5 {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-base);
+    font-weight: 600;
+    color: var(--gw-ink);
+}
+
+.gw-p,
+.gw-body {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-base);
+    font-weight: 400;
+    line-height: var(--gw-lh-normal);
+    color: var(--gw-ink);
+}
+
+.gw-small {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-sm);
+    color: var(--gw-muted-fg);
+}
+
+.gw-tiny {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-xs);
+    color: var(--gw-muted-fg);
+}
+
+.gw-eyebrow {
+    font-family: var(--gw-font-sans);
+    font-size: var(--gw-text-2xs);
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: var(--gw-tracking-wider);
+    color: var(--gw-muted-fg);
+}
+
+.gw-serif {
+    font-family: var(--gw-font-serif);
+    font-style: italic;
+}
+
+.gw-mono,
+.gw-code {
+    font-family: var(--gw-font-mono);
+    font-size: var(--gw-text-sm);
+    background: hsl(var(--muted));
+    border: 1px solid hsl(var(--border));
+    border-radius: var(--gw-radius-sm);
+    padding: 1px 6px;
+}

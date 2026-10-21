@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="robots" content="noindex, nofollow" />
+<title>GetWidget Homepage Redesign</title>
+<link rel="icon" href="/getwidget-preview/assets/logo.svg" />
+<style>
+  :root { --bg: #f7f8fa; --card: #fff; --ink: #1a233c; --sub: #5b6274; --line: #e6e9ef; --blue: #1f3bff; }
+  * { box-sizing: border-box; }
+  body { margin: 0; min-height: 100vh; background: var(--bg); color: var(--ink); font: 16px/1.55 ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif; }
+  main { max-width: 760px; margin: 0 auto; padding: 72px 16px; }
+  header { display: flex; align-items: center; gap: 10px; margin-bottom: 8px; }
+  header img { width: 26px; height: 26px; }
+  h1 { margin: 0; font-size: clamp(28px, 5vw, 38px); letter-spacing: -0.02em; line-height: 1.15; }
+  .lede { margin: 12px 0 36px; color: var(--sub); }
+  ul { display: grid; gap: 12px; margin: 0; padding: 0; list-style: none; }
+  a.card { display: grid; grid-template-columns: auto 1fr auto; align-items: center; gap: 16px; padding: 18px 20px; border-radius: 14px; background: var(--card); color: inherit; text-decoration: none; box-shadow: 0 0 0 1px var(--line), 0 1px 2px rgba(16,24,40,.04); transition: box-shadow .2s, transform .2s; }
+  a.card:hover { transform: translateY(-2px); box-shadow: 0 0 0 1px #cfd5e1, 0 10px 24px -14px rgba(16,24,40,.3); }
+  .tag { display: grid; place-items: center; width: 44px; height: 44px; border-radius: 11px; background: #eef1ff; color: var(--blue); font-weight: 700; font-size: 14px; }
+  .t { font-weight: 600; } .d { color: var(--sub); font-size: 14px; }
+  .go { color: var(--blue); font-weight: 600; font-size: 14px; white-space: nowrap; }
+  footer { margin-top: 32px; color: var(--sub); font-size: 13px; }
+  @media (max-width: 520px) { a.card { grid-template-columns: auto 1fr; } .go { display: none; } }
+</style>
+</head>
+<body>
+<main>
+  <header><img src="/getwidget-preview/assets/logo.svg" alt="" /><strong>GetWidget</strong></header>
+  <h1>Homepage redesign previews</h1>
+  <p class="lede">Same content and structure in each version. Only the visual design changes. For internal review only, not the live site.</p>
+  <ul>
+    <li><a class="card" href="/getwidget-preview/rough-page-structure/"><span class="tag">0</span><span><span class="t">Rough page structure</span><br><span class="d">Content and SEO structure, minimal styling</span></span><span class="go">Open →</span></a></li>
+    <li><a class="card" href="/getwidget-preview/design-v1/"><span class="tag">V1</span><span><span class="t">Design V1: Frosted glass</span><br><span class="d">Lightspark-inspired, blurred photo tiles and glass panels</span></span><span class="go">Open →</span></a></li>
+    <li><a class="card" href="/getwidget-preview/design-v2/"><span class="tag">V2</span><span><span class="t">Design V2: Editorial type</span><br><span class="d">V1 with readywhen-style handwritten labels and serif highlights</span></span><span class="go">Open →</span></a></li>
+    <li><a class="card" href="/getwidget-preview/design-v3/"><span class="tag">V3</span><span><span class="t">Design V3: Framed and clean</span><br><span class="d">Frigade-inspired, live widget builder in the hero</span></span><span class="go">Open →</span></a></li>
+  </ul>
+  <footer>Widget names, photos and reviews inside the mockups are sample content.</footer>
+</main>
+</body>
+</html>
